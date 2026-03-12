@@ -7,6 +7,11 @@ if (!supabaseUrl || !supabaseKey) {
   console.error("Missing REACT_APP_SUPABASE_URL or REACT_APP_SUPABASE_KEY env vars");
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: {
+    flowType: 'implicit',
+    detectSessionInUrl: true,
+  },
+});
 
 export default supabase;

@@ -133,6 +133,17 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Pick up OAuth error from redirect query params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const errDesc = params.get('error_description');
+    if (errDesc) {
+      setError(errDesc.replace(/\+/g, ' '));
+      // Clean the URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
+
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError("");
