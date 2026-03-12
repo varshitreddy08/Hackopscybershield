@@ -13,8 +13,8 @@ process.on("unhandledRejection", (err) => {
 const app = express();
 
 const allowedOrigins = process.env.FRONTEND_URL
-  ? [process.env.FRONTEND_URL, "http://localhost:3000"]
-  : ["http://localhost:3000"];
+  ? [process.env.FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"]
+  : ["http://localhost:3000", "http://localhost:3001"];
 
 app.use(cors({
   origin: allowedOrigins,
