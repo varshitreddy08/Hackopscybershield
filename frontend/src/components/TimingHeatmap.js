@@ -17,6 +17,7 @@ const HOURS = Array.from({ length: 24 }, (_, i) => {
   return `${h}${ampm}`;
 });
 
+// eslint-disable-next-line no-unused-vars
 const PROTOCOLS = [];
 
 function TimingHeatmap() {
