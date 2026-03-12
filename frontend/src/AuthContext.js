@@ -10,9 +10,14 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     // Listen for auth changes (including token from URL hash)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (event, session) => {
         setUser(session?.user ?? null);
         setLoading(false);
+
+        // Clean up the hash fragment after successful login
+        if (event === 'SIGNED_IN' && window.location.hash) {
+          window.history.replaceState(null, '', window.location.pathname);
+        }
       }
     );
 
